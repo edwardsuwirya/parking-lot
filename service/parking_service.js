@@ -1,35 +1,49 @@
 const {configTime} = require("../config/config");
-const parkingService = async (parkingLotRepository) => {
-    const {park, leave, check, capacity} = parkingLotRepository;
+const {Car} = require("../model/car");
+const {response} = require("../util/response_enum");
+const parkingService = (parkingLotRepository) => {
+    const {findOne, add, remove, getAll, capacity, getCurrentCar} = parkingLotRepository;
 
-    const parkFn = async (car) => {
-        try {
-            const res = await park(car);
-            console.log(res);
-        } catch (e) {
-            console.log(e);
+    const initParkingLot = () => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                console.log(`Tempat parkir berhasil dibuat dengan kapasitas ${capacity} kendaraan`)
+                resolve(response.Success);
+            }, configTime.initTime);
+        });
+    }
+
+    const parking = async (car) => {
+        const existingCar = await findOne(car);
+        if (existingCar) {
+            console.log(`Mobil ${existingCar.owner} dengan nopol ${existingCar.plateNumber} sudah parkir sebelumnya.`);
+        } else {
+            if (getCurrentCar() === capacity) {
+                console.log('Mohon maaf parkir sudah penuh.');
+            } else {
+                await add(car);
+                console.log(`Mobil ${car.owner} dengan nopol ${car.plateNumber} berhasil parkir.`);
+            }
         }
     }
-    const leaveFn = async (plateNumber) => {
-        try {
-            const res = await leave(plateNumber);
-            console.log(res);
-        } catch (e) {
-            console.log(e);
+    const leaving = async (plateNumber) => {
+        const existingCar = await findOne(Car(plateNumber));
+        if (existingCar) {
+            remove(existingCar);
+            console.log(`Mobil ${existingCar.owner} dengan nopol ${existingCar.plateNumber} sudah keluar.`)
+        } else {
+            console.log(`Mobil dengan nopol ${plateNumber} tidak ada.`)
         }
     }
-    const parkingLotInfo = async () => {
-        const res = await check();
+    const checkInfo = async () => {
+        const res = await getAll();
         console.log(res);
     }
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log(`Tempat parkir berhasil dibuat dengan kapasitas ${capacity} kendaraan`)
-            resolve({
-                parkFn, leaveFn, parkingLotInfo
-            });
-        }, configTime.initTime);
-    });
+
+
+    return {
+        initParkingLot, parking, leaving, checkInfo
+    }
 };
 
 module.exports = {

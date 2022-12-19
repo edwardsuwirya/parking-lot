@@ -1,28 +1,26 @@
 const {parkingLotRepository} = require("./repository/parking_repo");
 const {parkingService} = require("./service/parking_service");
 const {Car} = require("./model/car");
-const EnigmaPark = () => {
+const EnigmaPark = async () => {
 
-    return async () => {
-        const parkingRepo = parkingLotRepository(3);
-        const {parkFn, leaveFn, parkingLotInfo} = await parkingService(parkingRepo);
+    const parkingRepo = parkingLotRepository(3);
+    const {initParkingLot, parking, leaving, checkInfo} = parkingService(parkingRepo);
 
 
-        await parkFn(Car('BE001', 'Alex'));
-        await parkingLotInfo();
-        await parkFn(Car('B2021', 'Blex'));
-        await leaveFn('B2021');
-        await parkFn(Car('C012', 'Clex'));
-        await parkFn(Car('D0101', 'Dlex'));
-        await leaveFn('B2019');
-        await parkFn(Car('E3333', 'Elex'));
-        await parkFn(Car('BE001', 'Alex'));
-        await leaveFn('B2021');
-        await parkingLotInfo();
-        await leaveFn('BE001');
-        await parkingLotInfo();
-    };
-
+    await initParkingLot();
+    await parking(Car('BE001', 'Alex'));
+    await checkInfo();
+    await parking(Car('B2021', 'Blex'));
+    await leaving('B2021');
+    await parking(Car('C012', 'Clex'));
+    await parking(Car('D0101', 'Dlex'));
+    await leaving('B2019');
+    await parking(Car('E3333', 'Elex'));
+    await parking(Car('BE001', 'Alex'));
+    await leaving('B2021');
+    await checkInfo();
+    await leaving('BE001');
+    await checkInfo();
 }
 console.log("Enigma Parking Lot");
-EnigmaPark()();
+EnigmaPark();

@@ -1,41 +1,39 @@
 const {configTime} = require("../config/config");
+const {response} = require("../util/response_enum");
 const parkingLotRepository = (parkingCapacity) => {
     let cars = [];
     const capacity = parkingCapacity;
-    const park = (car) => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (cars.some((parkedCar) => car.plateNumber === parkedCar.plateNumber)) {
-                    reject(`Mobil ${car.owner} dengan nopol ${car.plateNumber} sudah parkir sebelumnya.`);
-                } else {
-                    if (cars.length === capacity) {
-                        reject('Mohon maaf parkir sudah penuh.');
-                    } else {
-                        cars.push(car);
-                        resolve(`Mobil ${car.owner} dengan nopol ${car.plateNumber} berhasil parkir.`);
-                    }
-                }
+
+    const findOne = (car) => {
+        return new Promise((resolve) => {
+            const existingCar = cars.find((c) => c.plateNumber === car.plateNumber);
+            if (existingCar) {
+                resolve(existingCar);
+            } else {
+                resolve(null);
+            }
+        })
+    }
+    const add = (car) => {
+        return new Promise((resolve) => {
+            setTimeout(async () => {
+                cars.push(car);
+                resolve(response.Success);
             }, configTime.parkTime);
         });
     };
 
-    const leave = (plateNumber) => {
-        return new Promise((resolve, reject) => {
+    const remove = (car) => {
+        return new Promise((resolve) => {
             setTimeout(() => {
-                const car = cars.find((car) => car.plateNumber === plateNumber);
-
-                if (!car) {
-                    reject(`Mobil dengan nopol ${plateNumber} tidak ada.`);
-                } else {
-                    const slotNumber = cars.findIndex((car) => car.plateNumber === plateNumber);
-                    cars.splice(slotNumber, 1);
-                    resolve(`Mobil ${car.owner} dengan nopol ${car.plateNumber} sudah keluar.`);
-                }
+                const slotNumber = cars.findIndex((c) => c.plateNumber === car.plateNumber);
+                cars.splice(slotNumber, 1);
+                resolve(response.Success);
             }, configTime.leaveTime);
         })
     };
 
-    const check = () => {
+    const getAll = () => {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve({capacity, remaining: capacity - cars.length, parkedCar: cars});
@@ -43,8 +41,12 @@ const parkingLotRepository = (parkingCapacity) => {
         })
     };
 
+    const getCurrentCar = () => {
+        return cars.length
+    }
+
     return {
-        park, leave, check, capacity
+        findOne, add, remove, getAll, capacity, getCurrentCar
     }
 };
 

@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4adb0697-0dee-4110-be57-5060ea296d8f" name="Changes" comment="Parking lot">
-      <change afterPath="$PROJECT_DIR$/config/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/car.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/repository/parking_repo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/parking_service.js" afterDir="false" />
+    <list default="true" id="4adb0697-0dee-4110-be57-5060ea296d8f" name="Changes" comment="Change file name parking lot">
+      <change afterPath="$PROJECT_DIR$/util/response_enum.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parking-lot.js" beforeDir="false" afterPath="$PROJECT_DIR$/parking-lot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/parking_repo.js" beforeDir="false" afterPath="$PROJECT_DIR$/repository/parking_repo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/parking_service.js" beforeDir="false" afterPath="$PROJECT_DIR$/service/parking_service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +79,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1671414457014</updated>
-      <workItem from="1671414457967" duration="6236000" />
+      <workItem from="1671414457967" duration="9988000" />
     </task>
     <task id="LOCAL-00001" summary="Parking lot">
       <created>1671418669065</created>
@@ -89,7 +88,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671418669065</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Parking lot with service and repo">
+      <created>1671421586426</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671421586426</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Change file name parking lot">
+      <created>1671421752039</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1671421752039</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,7 +110,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Parking lot" />
-    <option name="LAST_COMMIT_MESSAGE" value="Parking lot" />
+    <MESSAGE value="Parking lot with service and repo" />
+    <MESSAGE value="Change file name parking lot" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change file name parking lot" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
