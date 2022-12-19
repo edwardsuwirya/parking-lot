@@ -58,8 +58,8 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Node.js.parking-lot.js">
-    <configuration name="parking-lot.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/parking-lot.js" working-dir="$PROJECT_DIR$">
+  <component name="RunManager" selected="Node.js.app.js">
+    <configuration name="app.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/app.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <configuration name="scratch.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$APPLICATION_CONFIG_DIR$/scratches/scratch.js" working-dir="$PROJECT_DIR$">
@@ -67,7 +67,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.parking-lot.js" />
+        <item itemvalue="Node.js.app.js" />
         <item itemvalue="Node.js.scratch.js" />
       </list>
     </recent_temporary>
