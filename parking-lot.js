@@ -7,14 +7,13 @@ const configTime = {
 const Car = (plateNumber, owner) => ({plateNumber, owner});
 const ParkingLotRepository = (parkingCapacity) => {
     let cars = [];
-    const capacity = parkingCapacity;
     const park = (car) => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if (cars.some((parkedCar) => car.plateNumber === parkedCar.plateNumber)) {
                     reject(`Mobil ${car.owner} dengan nopol ${car.plateNumber} sudah parkir sebelumnya.`);
                 } else {
-                    if (cars.length === capacity) {
+                    if (cars.length === parkingCapacity) {
                         reject('Mohon maaf parkir sudah penuh.');
                     } else {
                         cars.push(car);
@@ -44,7 +43,7 @@ const ParkingLotRepository = (parkingCapacity) => {
     const check = () => {
         return new Promise((resolve) => {
             setTimeout(() => {
-                resolve({capacity, remaining: capacity - cars.length, parkedCar: cars});
+                resolve({capacity: parkingCapacity, remaining: parkingCapacity - cars.length, parkedCar: cars});
             }, configTime.checkTime);
         })
     };
