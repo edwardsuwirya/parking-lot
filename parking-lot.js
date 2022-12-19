@@ -10,7 +10,7 @@ const ParkingLotRepository = (parkingCapacity) => {
     const park = (car) => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                if (cars.some((parkedCar) => car.plateNumber === parkedCar.plateNumber)) {
+                if (cars.find((parkedCar) => car.plateNumber === parkedCar.plateNumber)) {
                     reject(`Mobil ${car.owner} dengan nopol ${car.plateNumber} sudah parkir sebelumnya.`);
                 } else {
                     if (cars.length === parkingCapacity) {
